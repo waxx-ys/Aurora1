@@ -1,0 +1,105 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="Script" path="res://scripts/corridor/ending_zone.gd" id="1_end"]
+[ext_resource type="Material" path="res://materials/iron_dark.tres" id="2_iron"]
+[ext_resource type="Material" path="res://materials/rune_glow.tres" id="3_rune"]
+[ext_resource type="Material" path="res://materials/rune_disc.tres" id="4_disc"]
+[ext_resource type="Material" path="res://materials/witch_eye_glow.tres" id="5_lamp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape_trigger"]
+size = Vector3(5.8, 3.2, 4.2)
+
+[sub_resource type="TorusMesh" id="Torus_ring"]
+inner_radius = 1.75
+outer_radius = 1.86
+rings = 48
+ring_segments = 8
+
+[sub_resource type="TorusMesh" id="Torus_ring_outer"]
+inner_radius = 2.08
+outer_radius = 2.14
+rings = 48
+ring_segments = 8
+
+[sub_resource type="CylinderMesh" id="Cylinder_disc"]
+top_radius = 2.32
+bottom_radius = 2.32
+height = 0.01
+radial_segments = 64
+rings = 1
+cap_top = true
+cap_bottom = false
+
+[sub_resource type="BoxMesh" id="Box_pillar"]
+size = Vector3(0.36, 3.7, 0.36)
+
+[sub_resource type="BoxMesh" id="Box_beam"]
+size = Vector3(5.3, 0.26, 0.4)
+
+[sub_resource type="BoxMesh" id="Box_rune_strip"]
+size = Vector3(0.06, 2.5, 0.06)
+
+[sub_resource type="BoxMesh" id="Box_inlay"]
+size = Vector3(3.2, 0.04, 1.5)
+
+[sub_resource type="SphereMesh" id="Sphere_lamp"]
+radius = 0.075
+height = 0.15
+radial_segments = 12
+rings = 6
+
+[node name="EndingZone" type="Area3D"]
+collision_layer = 4
+collision_mask = 2
+monitoring = true
+monitorable = true
+script = ExtResource("1_end")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+shape = SubResource("BoxShape_trigger")
+
+[node name="Stage" type="Node3D" parent="."]
+
+[node name="LeftPillar" type="MeshInstance3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.45, 1.85, 0)
+mesh = SubResource("Box_pillar")
+material_override = ExtResource("2_iron")
+
+[node name="RightPillar" type="MeshInstance3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45, 1.85, 0)
+mesh = SubResource("Box_pillar")
+material_override = ExtResource("2_iron")
+
+[node name="Beam" type="MeshInstance3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.78, 0)
+mesh = SubResource("Box_beam")
+material_override = ExtResource("2_iron")
+
+[node name="LeftRuneStrip" type="MeshInstance3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26, 1.8, 0.12)
+mesh = SubResource("Box_rune_strip")
+material_override = ExtResource("3_rune")
+
+[node name="RightRuneStrip" type="MeshInstance3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.26, 1.8, 0.12)
+mesh = SubResource("Box_rune_strip")
+material_override = ExtResource("3_rune")
+
+[node name="LeftPillarLamp" type="MeshInstance3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.45, 3.55, 0.18)
+mesh = SubResource("Sphere_lamp")
+material_override = ExtResource("5_lamp")
+
+[node name="RightPillarLamp" type="MeshInstance3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45, 3.55, 0.18)
+mesh = SubResource("Sphere_lamp")
+material_override = ExtResource("5_lamp")
+
+[node name="FloorInlay" type="MeshInstance3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 1.65)
+mesh = SubResource("Box_inlay")
+material_override = ExtResource("2_iron")
+
+[node name="EndingTextAnchor" type="Marker3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 1.65)

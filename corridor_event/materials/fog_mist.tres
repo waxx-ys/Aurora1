@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/fx/fog_mist.png" id="1_fog"]
+
+[resource]
+resource_name = "fog_mist"
+shading_mode = 0
+transparency = 1
+cull_mode = 2
+billboard_mode = 3
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_fog")
+albedo_color = Color(0.58, 0.86, 0.76, 0.22)
+texture_filter = 5

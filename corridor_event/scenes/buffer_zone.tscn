@@ -1,0 +1,223 @@
+[gd_scene load_steps=21 format=3]
+
+[ext_resource type="Script" path="res://scripts/corridor/buffer_zone.gd" id="1_zone"]
+[ext_resource type="Material" path="res://materials/wood_trim.tres" id="2_trim"]
+[ext_resource type="Material" path="res://materials/rune_glow.tres" id="3_rune"]
+[ext_resource type="Material" path="res://materials/portal_veil.tres" id="5_veil"]
+[ext_resource type="Material" path="res://materials/card_back.tres" id="7_card"]
+[ext_resource type="Material" path="res://materials/witch_eye_glow.tres" id="6_lamp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape_trigger"]
+size = Vector3(5.8, 3.2, 4.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape_pillar"]
+size = Vector3(0.5, 3.7, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rune_disc"]
+top_radius = 2.55
+bottom_radius = 2.55
+height = 0.01
+radial_segments = 64
+rings = 1
+cap_top = true
+cap_bottom = false
+
+[sub_resource type="TorusMesh" id="TorusMesh_ring"]
+inner_radius = 1.86
+outer_radius = 2.0
+rings = 48
+ring_segments = 8
+
+[sub_resource type="TorusMesh" id="TorusMesh_ring_outer"]
+inner_radius = 2.35
+outer_radius = 2.4
+rings = 48
+ring_segments = 8
+
+[sub_resource type="BoxMesh" id="BoxMesh_pillar"]
+size = Vector3(0.5, 3.7, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_beam"]
+size = Vector3(6.1, 0.4, 0.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_strip_vertical"]
+size = Vector3(0.06, 2.6, 0.06)
+
+[sub_resource type="BoxMesh" id="BoxMesh_strip_horizontal"]
+size = Vector3(5.0, 0.06, 0.06)
+
+[sub_resource type="QuadMesh" id="QuadMesh_rift"]
+size = Vector2(4.5, 3.15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_float_rune"]
+size = Vector3(0.07, 0.07, 0.07)
+
+[sub_resource type="SphereMesh" id="SphereMesh_lamp"]
+radius = 0.09
+height = 0.18
+radial_segments = 12
+rings = 6
+
+[sub_resource type="QuadMesh" id="QuadMesh_card"]
+size = Vector2(0.3, 0.44)
+
+[sub_resource type="SphereMesh" id="SphereMesh_eye"]
+radius = 0.036
+height = 0.072
+radial_segments = 8
+rings = 4
+
+[node name="BufferZone" type="Node3D"]
+script = ExtResource("1_zone")
+
+[node name="TriggerArea" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TriggerArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+shape = SubResource("BoxShape_trigger")
+
+[node name="MemoryGate" type="Node3D" parent="."]
+
+[node name="LeftPillar" type="MeshInstance3D" parent="MemoryGate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 1.85, 0)
+mesh = SubResource("BoxMesh_pillar")
+material_override = ExtResource("2_trim")
+
+[node name="RightPillar" type="MeshInstance3D" parent="MemoryGate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 1.85, 0)
+mesh = SubResource("BoxMesh_pillar")
+material_override = ExtResource("2_trim")
+
+[node name="Beam" type="MeshInstance3D" parent="MemoryGate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.92, 0)
+mesh = SubResource("BoxMesh_beam")
+material_override = ExtResource("2_trim")
+
+[node name="LeftRuneStrip" type="MeshInstance3D" parent="MemoryGate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32, 1.8, 0)
+mesh = SubResource("BoxMesh_strip_vertical")
+material_override = ExtResource("3_rune")
+
+[node name="RightRuneStrip" type="MeshInstance3D" parent="MemoryGate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.32, 1.8, 0)
+mesh = SubResource("BoxMesh_strip_vertical")
+material_override = ExtResource("3_rune")
+
+[node name="BeamRuneStrip" type="MeshInstance3D" parent="MemoryGate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7, 0)
+mesh = SubResource("BoxMesh_strip_horizontal")
+material_override = ExtResource("3_rune")
+
+[node name="Rift" type="MeshInstance3D" parent="MemoryGate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0.06)
+mesh = SubResource("QuadMesh_rift")
+material_override = ExtResource("5_veil")
+
+[node name="PillarLamps" type="Node3D" parent="MemoryGate"]
+
+[node name="LeftLamp" type="MeshInstance3D" parent="MemoryGate/PillarLamps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 3.55, 0.24)
+mesh = SubResource("SphereMesh_lamp")
+material_override = ExtResource("6_lamp")
+
+[node name="RightLamp" type="MeshInstance3D" parent="MemoryGate/PillarLamps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 3.55, 0.24)
+mesh = SubResource("SphereMesh_lamp")
+material_override = ExtResource("6_lamp")
+
+[node name="WitchEyes" type="Node3D" parent="."]
+
+[node name="LeftEye" type="MeshInstance3D" parent="WitchEyes"]
+position = Vector3(-0.23, 2.92, 0.12)
+mesh = SubResource("SphereMesh_eye")
+material_override = ExtResource("6_lamp")
+
+[node name="RightEye" type="MeshInstance3D" parent="WitchEyes"]
+position = Vector3(0.23, 2.92, 0.12)
+mesh = SubResource("SphereMesh_eye")
+material_override = ExtResource("6_lamp")
+
+[node name="WitchCards" type="Node3D" parent="."]
+
+[node name="Card1" type="MeshInstance3D" parent="WitchCards" groups=["floating_card"]]
+position = Vector3(-1.95, 2.1, -0.35)
+rotation = Vector3(0.08, 0.7, -0.18)
+mesh = SubResource("QuadMesh_card")
+material_override = ExtResource("7_card")
+
+[node name="Card2" type="MeshInstance3D" parent="WitchCards" groups=["floating_card"]]
+position = Vector3(1.85, 1.55, -0.15)
+rotation = Vector3(-0.1, -0.55, 0.22)
+mesh = SubResource("QuadMesh_card")
+material_override = ExtResource("7_card")
+
+[node name="Card3" type="MeshInstance3D" parent="WitchCards" groups=["floating_card"]]
+position = Vector3(-1.25, 3.0, 0.35)
+rotation = Vector3(0.16, 0.35, 0.12)
+mesh = SubResource("QuadMesh_card")
+material_override = ExtResource("7_card")
+
+[node name="Card4" type="MeshInstance3D" parent="WitchCards" groups=["floating_card"]]
+position = Vector3(1.45, 3.12, -0.55)
+rotation = Vector3(-0.12, -0.9, -0.2)
+mesh = SubResource("QuadMesh_card")
+material_override = ExtResource("7_card")
+
+[node name="Card5" type="MeshInstance3D" parent="WitchCards" groups=["floating_card"]]
+position = Vector3(0.55, 2.35, 0.55)
+rotation = Vector3(0.2, 0.15, 0.3)
+mesh = SubResource("QuadMesh_card")
+material_override = ExtResource("7_card")
+
+[node name="FloatingRunes" type="Node3D" parent="."]
+
+[node name="Rune1" type="MeshInstance3D" parent="FloatingRunes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2, 2.7, 0.1)
+mesh = SubResource("BoxMesh_float_rune")
+material_override = ExtResource("3_rune")
+
+[node name="Rune2" type="MeshInstance3D" parent="FloatingRunes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 3.0, 0.1)
+mesh = SubResource("BoxMesh_float_rune")
+material_override = ExtResource("3_rune")
+
+[node name="Rune3" type="MeshInstance3D" parent="FloatingRunes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 3.55, 0.1)
+mesh = SubResource("BoxMesh_float_rune")
+material_override = ExtResource("3_rune")
+
+[node name="Rune4" type="MeshInstance3D" parent="FloatingRunes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 1.3, -0.9)
+mesh = SubResource("BoxMesh_float_rune")
+material_override = ExtResource("3_rune")
+
+[node name="Rune5" type="MeshInstance3D" parent="FloatingRunes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 2.1, -0.9)
+mesh = SubResource("BoxMesh_float_rune")
+material_override = ExtResource("3_rune")
+
+[node name="Rune6" type="MeshInstance3D" parent="FloatingRunes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 2.6, 1.0)
+mesh = SubResource("BoxMesh_float_rune")
+material_override = ExtResource("3_rune")
+
+[node name="ArchCollision" type="StaticBody3D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="LeftPillarShape" type="CollisionShape3D" parent="ArchCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 1.85, 0)
+shape = SubResource("BoxShape_pillar")
+
+[node name="RightPillarShape" type="CollisionShape3D" parent="ArchCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 1.85, 0)
+shape = SubResource("BoxShape_pillar")
+
+[node name="RuneLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0.35)
+light_color = Color(0.58, 0.42, 1, 1)
+light_energy = 0.35
+omni_range = 6.5
+omni_attenuation = 1.45

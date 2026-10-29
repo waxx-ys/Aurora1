@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "dust_mote"
+shading_mode = 0
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+billboard_mode = 3
+albedo_color = Color(0.72, 0.78, 0.8, 0.2)

@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/floor/wall_tile_albedo.png" id="1_albedo"]
+[ext_resource type="Texture2D" path="res://assets/floor/wall_tile_normal.png" id="2_normal"]
+
+[resource]
+resource_name = "floor_stone"
+albedo_color = Color(0.42, 0.47, 0.45, 1)
+albedo_texture = ExtResource("1_albedo")
+normal_enabled = true
+normal_texture = ExtResource("2_normal")
+normal_scale = 1.0
+roughness = 0.55
+metallic = 0.0
+metallic_specular = 0.5
+uv1_scale = Vector3(6, 2520, 1)
+texture_filter = 5

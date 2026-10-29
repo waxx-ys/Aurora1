@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "wood_trim"
+albedo_color = Color(0.045, 0.055, 0.05, 1)
+roughness = 0.55
+metallic = 0.2
+metallic_specular = 0.3
+uv1_scale = Vector3(1, 1, 1)

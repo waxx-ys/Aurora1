@@ -1,0 +1,627 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/event_hud.gd" id="1_hud"]
+[ext_resource type="Theme" path="res://ui/main_theme.tres" id="2_theme"]
+[ext_resource type="Shader" path="res://shaders/eerie_vignette.gdshader" id="3_vignette"]
+
+[sub_resource type="SystemFont" id="SystemFont_serif"]
+font_names = PackedStringArray("Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", "serif")
+font_weight = 600
+antialiasing = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vignette"]
+shader = ExtResource("3_vignette")
+shader_parameter/vignette_strength = 0.62
+shader_parameter/vignette_softness = 0.5
+shader_parameter/grain_strength = 0.035
+shader_parameter/tint_color = Color(0.014, 0.018, 0.03, 1)
+
+[sub_resource type="StyleBoxFlat" id="Style_top_left_backdrop"]
+bg_color = Color(0.004, 0.01, 0.008, 0.18)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="Style_session_badge"]
+content_margin_left = 14.0
+content_margin_top = 4.0
+content_margin_right = 14.0
+content_margin_bottom = 4.0
+bg_color = Color(0.004, 0.012, 0.009, 0.42)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.42, 0.7, 0.3)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="Style_debug_panel"]
+content_margin_left = 14.0
+content_margin_top = 10.0
+content_margin_right = 14.0
+content_margin_bottom = 10.0
+bg_color = Color(0.004, 0.01, 0.007, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.35, 0.8, 0.5, 0.3)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="Style_narration"]
+content_margin_left = 26.0
+content_margin_top = 18.0
+content_margin_right = 26.0
+content_margin_bottom = 16.0
+bg_color = Color(0.012, 0.014, 0.032, 0.94)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.46, 0.4, 0.82, 0.5)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.55)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="Style_connecting"]
+content_margin_left = 30.0
+content_margin_top = 22.0
+content_margin_right = 30.0
+content_margin_bottom = 22.0
+bg_color = Color(0.012, 0.012, 0.032, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5, 0.44, 0.9, 0.55)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.55)
+shadow_size = 14
+
+[sub_resource type="StyleBoxFlat" id="Style_badge"]
+content_margin_left = 20.0
+content_margin_top = 7.0
+content_margin_right = 20.0
+content_margin_bottom = 7.0
+bg_color = Color(0.03, 0.025, 0.07, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.52, 0.46, 0.95, 0.55)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="Style_return"]
+content_margin_left = 34.0
+content_margin_top = 16.0
+content_margin_right = 34.0
+content_margin_bottom = 16.0
+bg_color = Color(0.02, 0.024, 0.02, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.62, 0.66, 0.52, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="Style_return_success"]
+content_margin_left = 34.0
+content_margin_top = 16.0
+content_margin_right = 34.0
+content_margin_bottom = 16.0
+bg_color = Color(0.012, 0.045, 0.026, 0.94)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.95, 0.6, 0.7)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.1, 0.5, 0.25, 0.25)
+shadow_size = 16
+
+[sub_resource type="StyleBoxFlat" id="Style_return_failure"]
+content_margin_left = 34.0
+content_margin_top = 16.0
+content_margin_right = 34.0
+content_margin_bottom = 16.0
+bg_color = Color(0.06, 0.012, 0.014, 0.94)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.78, 0.28, 0.24, 0.75)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.5, 0.08, 0.06, 0.25)
+shadow_size = 16
+
+[sub_resource type="StyleBoxFlat" id="Style_toast"]
+content_margin_left = 22.0
+content_margin_top = 9.0
+content_margin_right = 22.0
+content_margin_bottom = 9.0
+bg_color = Color(0.005, 0.014, 0.01, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.68, 0.5, 0.35)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="Style_bottom_bar"]
+bg_color = Color(0.003, 0.008, 0.006, 0.55)
+
+[sub_resource type="StyleBoxFlat" id="Style_ending"]
+content_margin_left = 42.0
+content_margin_top = 30.0
+content_margin_right = 42.0
+content_margin_bottom = 26.0
+bg_color = Color(0.012, 0.01, 0.028, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5, 0.4, 0.95, 0.65)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color(0.12, 0.04, 0.3, 0.35)
+shadow_size = 22
+
+[node name="HUD" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_hud")
+
+[node name="Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_theme")
+
+[node name="Vignette" type="ColorRect" parent="Root"]
+material = SubResource("ShaderMaterial_vignette")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="RitualPulse" type="ColorRect" parent="Root"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.3, 0.22, 0.7, 0)
+
+[node name="TopLeftBackdrop" type="PanelContainer" parent="Root"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 12.0
+offset_right = 724.0
+offset_bottom = 186.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_top_left_backdrop")
+
+[node name="TopLeft" type="VBoxContainer" parent="Root"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 26.0
+offset_right = 702.0
+offset_bottom = 160.0
+theme_override_constants/separation = 3
+
+[node name="Title" type="Label" parent="Root/TopLeft"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.86, 0.74, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = SubResource("SystemFont_serif")
+theme_override_font_sizes/font_size = 34
+text = "记忆回廊"
+
+[node name="Subtitle" type="Label" parent="Root/TopLeft"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.62, 0.72, 1)
+theme_override_font_sizes/font_size = 12
+text = "MEMORY CORRIDOR · 雾中长廊"
+
+[node name="Objective" type="Label" parent="Root/TopLeft"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.78, 0.74, 1)
+theme_override_font_sizes/font_size = 14
+text = "雾贴着火把爬上来。长廊深处，有牌面翻动的声音。
+沿着长廊走下去，直到雾把你带到牌阵前。"
+autowrap_mode = 3
+
+[node name="SessionPanel" type="PanelContainer" parent="Root"]
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -466.0
+offset_top = 30.0
+offset_right = -38.0
+offset_bottom = 64.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_session_badge")
+
+[node name="SessionLabel" type="Label" parent="Root/SessionPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.68, 0.68, 0.82, 0.95)
+theme_override_font_sizes/font_size = 13
+text = "前段 · 雾中长廊"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="DebugPanel" type="PanelContainer" parent="Root"]
+visible = false
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -660.0
+offset_top = 74.0
+offset_right = -38.0
+offset_bottom = 300.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_debug_panel")
+
+[node name="DebugLabel" type="Label" parent="Root/DebugPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.63, 0.95, 0.74, 1)
+theme_override_font_sizes/font_size = 12
+text = ""
+autowrap_mode = 3
+
+[node name="ZoneBadge" type="PanelContainer" parent="Root"]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -230.0
+offset_top = 100.0
+offset_right = 230.0
+offset_bottom = 142.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_badge")
+
+[node name="BadgeText" type="Label" parent="Root/ZoneBadge"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.72, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "⟡  雾正在聚拢  ⟡"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TrialMark" type="PanelContainer" parent="Root"]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -280.0
+offset_top = 250.0
+offset_right = 280.0
+offset_bottom = 296.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_return_success")
+
+[node name="TrialMarkLabel" type="Label" parent="Root/TrialMark"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 1, 0.72, 1)
+theme_override_font_sizes/font_size = 14
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Countdown" type="Label" parent="Root"]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -110.0
+offset_right = 220.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.82, 0.76, 1, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.02, 0.06, 0.95)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 100
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NarrationPanel" type="PanelContainer" parent="Root"]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -440.0
+offset_top = -246.0
+offset_right = 440.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_narration")
+
+[node name="VBox" type="VBoxContainer" parent="Root/NarrationPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="HBoxContainer" parent="Root/NarrationPanel/VBox"]
+layout_mode = 2
+
+[node name="Speaker" type="Label" parent="Root/NarrationPanel/VBox/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.66, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = ""
+
+[node name="Spacer" type="Control" parent="Root/NarrationPanel/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PageLabel" type="Label" parent="Root/NarrationPanel/VBox/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.74, 0.9)
+theme_override_font_sizes/font_size = 12
+text = "1 / 4"
+
+[node name="NarrationText" type="RichTextLabel" parent="Root/NarrationPanel/VBox"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = ""
+fit_content = true
+scroll_active = false
+theme_override_colors/default_color = Color(0.88, 0.88, 0.84, 1)
+theme_override_font_sizes/normal_font_size = 20
+
+[node name="Hint" type="Label" parent="Root/NarrationPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.72, 0.9)
+theme_override_font_sizes/font_size = 12
+text = "E 继续   ·   Esc 暂不进入"
+
+[node name="ConnectingPanel" type="PanelContainer" parent="Root"]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -86.0
+offset_right = 300.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_connecting")
+
+[node name="VBox" type="VBoxContainer" parent="Root/ConnectingPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="ConnectingTitle" type="Label" parent="Root/ConnectingPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.74, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "牌阵正在开启"
+horizontal_alignment = 1
+
+[node name="ConnectingStatus" type="Label" parent="Root/ConnectingPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.78, 0.82, 1)
+theme_override_font_sizes/font_size = 15
+text = "正在把你的影子押上牌桌……"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConnectingHint" type="Label" parent="Root/ConnectingPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.72, 0.9)
+theme_override_font_sizes/font_size = 12
+text = "雾会替你记住这一步   ·   首次唤醒需要数秒"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ReturnBanner" type="PanelContainer" parent="Root"]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -360.0
+offset_top = 124.0
+offset_right = 360.0
+offset_bottom = 238.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_return")
+
+[node name="VBox" type="VBoxContainer" parent="Root/ReturnBanner"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="ReturnTitle" type="Label" parent="Root/ReturnBanner/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.86, 0.7, 1)
+theme_override_fonts/font = SubResource("SystemFont_serif")
+theme_override_font_sizes/font_size = 26
+text = ""
+horizontal_alignment = 1
+
+[node name="ReturnSubtitle" type="Label" parent="Root/ReturnBanner/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.84, 0.76, 1)
+theme_override_font_sizes/font_size = 14
+text = "雾重新合拢。"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="EndingPanel" type="PanelContainer" parent="Root"]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -410.0
+offset_top = -200.0
+offset_right = 410.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_ending")
+
+[node name="VBox" type="VBoxContainer" parent="Root/EndingPanel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="EndingKicker" type="Label" parent="Root/EndingPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.66, 0.58, 0.92, 1)
+theme_override_font_sizes/font_size = 13
+text = "长廊尽头 · 结局文本预留区"
+horizontal_alignment = 1
+
+[node name="EndingTitle" type="Label" parent="Root/EndingPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.84, 0.68, 1)
+theme_override_fonts/font = SubResource("SystemFont_serif")
+theme_override_font_sizes/font_size = 34
+text = "记忆回廊 · 尽头"
+horizontal_alignment = 1
+
+[node name="EndingBody" type="Label" parent="Root/EndingPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84, 0.84, 0.8, 1)
+theme_override_font_sizes/font_size = 16
+text = ""
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="EndingHint" type="Label" parent="Root/EndingPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.55, 0.66, 1)
+theme_override_font_sizes/font_size = 12
+text = "离开此区域关闭 · 此处为游戏结束文本 / 制作名单预留空间"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ToastPanel" type="PanelContainer" parent="Root"]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -380.0
+offset_top = -318.0
+offset_right = 380.0
+offset_bottom = -270.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_toast")
+
+[node name="Toast" type="Label" parent="Root/ToastPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84, 0.84, 0.82, 1)
+theme_override_font_sizes/font_size = 14
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="BottomBar" type="PanelContainer" parent="Root"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_bottom_bar")
+
+[node name="Controls" type="Label" parent="Root"]
+layout_mode = 0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -40.0
+offset_right = 1220.0
+offset_bottom = -14.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.64, 0.7, 0.62, 0.95)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
+text = "WASD 移动   ·   鼠标 视角   ·   Shift 疾跑   ·   Space 跳跃   ·   V 切换镜头   ·   Esc 释放鼠标   ·   F3 调试"
+
+[node name="FadeRect" type="ColorRect" parent="Root"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
