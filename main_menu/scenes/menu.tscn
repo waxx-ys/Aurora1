@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_menu"]
+[ext_resource type="Mesh" path="res://assets/model/helltown.obj" id="2_mesh"]
+[ext_resource type="AudioStream" path="res://audio/bad_day.wav" id="3_music"]
+[ext_resource type="Shader" path="res://shaders/menu_vignette.gdshader" id="4_shader"]
+
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vignette"]
+shader = ExtResource("4_shader")
+shader_parameter/vignette_strength = 1.05
+shader_parameter/grain_amount = 0.035
+shader_parameter/warm_tint = 0.1
+
+
+[node name="Menu" type="Node3D"]
+script = ExtResource("1_menu")
+
+[node name="Helltown" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_mesh")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+fov = 60.0
+near = 0.03
+far = 80.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_music")
+volume_db = -9.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Root" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Vignette" type="ColorRect" parent="UI/Root"]
+material = SubResource("ShaderMaterial_vignette")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="ClickCatcher" type="Control" parent="UI/Root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+
+[node name="TitleRoot" type="Control" parent="UI/Root"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -840.0
+offset_top = 150.0
+offset_right = -210.0
+offset_bottom = 350.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="MainWrap" type="Control" parent="UI/Root/TitleRoot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MainRow" type="HBoxContainer" parent="UI/Root/TitleRoot/MainWrap"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="FadeRect" type="ColorRect" parent="UI/Root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+color = Color(0, 0, 0, 1)

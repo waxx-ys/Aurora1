@@ -1,0 +1,75 @@
+newmtl MA_cadaver
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 1
+map_Kd textures/cadaver_diffuse.png
+
+newmtl MA_churchInterior
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 1
+map_Kd textures/churchInterior_diffuse.png
+
+newmtl MA_dungeon
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 1
+map_Kd textures/dungeon_diffuse.png
+map_d textures/dungeon_alpha.png
+
+newmtl MA_hallway
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 1
+map_Kd textures/hallway_diffuse.png
+
+newmtl MA_hallway2
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 1
+map_Kd textures/hallway_diffuse.png
+
+newmtl MA_house_construc
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 1
+map_Kd textures/house_construc_diffuse.png
+
+newmtl MA_house_haunted
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 1
+map_Kd textures/house_haunted.png
+
+newmtl MA_monastery
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 1
+map_Kd textures/monastery_diffuse.png
+map_d textures/monastery_alpha.png
+
+newmtl MA_prop_02
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 1
+map_Kd textures/prop_diffuse.png
+map_d textures/prop_alpha.png
+map_Ke textures/prop_emissive.png

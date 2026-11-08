@@ -1,0 +1,151 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://scripts/lantern.gd" id="1_lantern"]
+[ext_resource type="Material" path="res://materials_iron.tres" id="2_iron"]
+[ext_resource type="Material" path="res://materials_glass.tres" id="3_glass"]
+
+[sub_resource type="BoxMesh" id="Box_chain"]
+size = Vector3(0.018, 1.35, 0.018)
+
+[sub_resource type="CylinderMesh" id="Cyl_top"]
+top_radius = 0.09
+bottom_radius = 0.215
+height = 0.15
+radial_segments = 16
+rings = 2
+
+[sub_resource type="TorusMesh" id="Torus_ring"]
+inner_radius = 0.16
+outer_radius = 0.19
+rings = 20
+ring_segments = 6
+
+[sub_resource type="BoxMesh" id="Box_bar"]
+size = Vector3(0.022, 0.60, 0.022)
+
+[sub_resource type="BoxMesh" id="Box_pane"]
+size = Vector3(0.175, 0.42, 0.012)
+
+[sub_resource type="CylinderMesh" id="Cyl_bottom"]
+top_radius = 0.17
+bottom_radius = 0.05
+height = 0.18
+radial_segments = 16
+rings = 1
+
+[sub_resource type="SphereMesh" id="Sphere_knob"]
+radius = 0.035
+height = 0.07
+
+[node name="Lantern" type="Node3D"]
+script = ExtResource("1_lantern")
+
+[node name="Chain" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 0)
+mesh = SubResource("Box_chain")
+material_override = ExtResource("2_iron")
+
+[node name="TopCap" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31, 0)
+mesh = SubResource("Cyl_top")
+material_override = ExtResource("2_iron")
+
+[node name="TopRing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.225, 0)
+mesh = SubResource("Torus_ring")
+material_override = ExtResource("2_iron")
+
+[node name="BottomRing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14, 0)
+mesh = SubResource("Torus_ring")
+material_override = ExtResource("2_iron")
+
+[node name="BottomCap" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+mesh = SubResource("Cyl_bottom")
+material_override = ExtResource("2_iron")
+
+[node name="Knob" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.36, 0)
+mesh = SubResource("Sphere_knob")
+material_override = ExtResource("2_iron")
+
+[node name="LeftBar" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.165, 0.02, 0)
+mesh = SubResource("Box_bar")
+material_override = ExtResource("2_iron")
+
+[node name="RightBar" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.165, 0.02, 0)
+mesh = SubResource("Box_bar")
+material_override = ExtResource("2_iron")
+
+[node name="FrontBar" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0.165)
+mesh = SubResource("Box_bar")
+material_override = ExtResource("2_iron")
+
+[node name="BackBar" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, -0.165)
+mesh = SubResource("Box_bar")
+material_override = ExtResource("2_iron")
+
+[node name="FrontMullion0" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.085, 0.02, 0.18)
+mesh = SubResource("Box_bar")
+material_override = ExtResource("2_iron")
+
+[node name="FrontMullion1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 0.02, 0.18)
+mesh = SubResource("Box_bar")
+material_override = ExtResource("2_iron")
+
+[node name="FrontMullion2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.085, 0.02, 0.18)
+mesh = SubResource("Box_bar")
+material_override = ExtResource("2_iron")
+
+[node name="BackMullion0" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.085, 0.02, -0.18)
+mesh = SubResource("Box_bar")
+material_override = ExtResource("2_iron")
+
+[node name="BackMullion1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 0.02, -0.18)
+mesh = SubResource("Box_bar")
+material_override = ExtResource("2_iron")
+
+[node name="BackMullion2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.085, 0.02, -0.18)
+mesh = SubResource("Box_bar")
+material_override = ExtResource("2_iron")
+
+[node name="GlassRoot" type="Node3D" parent="."]
+
+[node name="PaneFront" type="MeshInstance3D" parent="GlassRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0.145)
+mesh = SubResource("Box_pane")
+material_override = ExtResource("3_glass")
+
+[node name="PaneBack" type="MeshInstance3D" parent="GlassRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, -0.145)
+mesh = SubResource("Box_pane")
+material_override = ExtResource("3_glass")
+
+[node name="PaneLeft" type="MeshInstance3D" parent="GlassRoot"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -0.145, 0.02, 0)
+mesh = SubResource("Box_pane")
+material_override = ExtResource("3_glass")
+
+[node name="PaneRight" type="MeshInstance3D" parent="GlassRoot"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0.145, 0.02, 0)
+mesh = SubResource("Box_pane")
+material_override = ExtResource("3_glass")
+
+[node name="FlameLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+light_color = Color(1, 0.48, 0.15, 1)
+light_energy = 3.4
+omni_range = 7.0
+omni_attenuation = 1.35
+shadow_enabled = false
